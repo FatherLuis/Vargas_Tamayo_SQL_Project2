@@ -10,7 +10,7 @@ namespace Vargas_Tamayo_SQL_Project2
 {
     class mySQL
     {
-
+        //randoms
         static void SQL()
         {
 
