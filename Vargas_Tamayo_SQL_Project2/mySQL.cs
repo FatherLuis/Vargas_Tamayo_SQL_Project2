@@ -28,7 +28,9 @@ namespace Vargas_Tamayo_SQL_Project2
         {
             //"jdbc:sqlserver://CTASV20R2DRW.tamuct.edu;databaseName=INVENTORY;user=Luisvargas;password=Tamayo005;"
             //INTEGRATED SECURITY 
-            String strConnection = "{0}; + {1}; + {2}; + {3};", strDatabase,databaseName,strUserName,strPassword;
+
+            //DataSource=CTASV20R2DRW.tamuct.edu;InitialCatalog=Luis2;UserID=Luis2;Password=******;
+            String strConnection = "DataSource={0}; + {1}; +{2}; +{3};", strDatabase,databaseName,strUserName,strPassword;
 
             SqlConnection con = new SqlConnection(strConnection);
 
