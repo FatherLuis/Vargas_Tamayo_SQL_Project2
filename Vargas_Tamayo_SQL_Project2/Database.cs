@@ -12,9 +12,37 @@ namespace Vargas_Tamayo_SQL_Project2
 {
     public partial class Database : Form
     {
-        public Database()
+        private mySQL myDatabase;
+
+        public Database(String username, String Password)
         {
             InitializeComponent();
+            myDatabase = new mySQL("LUIS", "Vargas");
         }
+
+        
+
+        public void READ_TABLE()
+        {
+
+            dgvViewData.DataSource = myDatabase.ImportData("TABLE NAME");
+
+
+
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

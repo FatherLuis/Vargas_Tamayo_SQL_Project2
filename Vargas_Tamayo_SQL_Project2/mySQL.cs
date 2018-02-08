@@ -5,60 +5,80 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Vargas_Tamayo_SQL_Project2
 {
     class mySQL
     {
-        //TEST NUMBER 2
+        private static string strDatabase;
+        private static string databaseName;
+        private static string strUsername;
+        private static string strPassword;
 
-        static void SQL()
+        public mySQL(string Username, string Password)
         {
+            strDatabase = "CTASV20R2DRW.tamuct.edu";
+            databaseName = "databaseName=Luis2FirstAssigment";
+            strUsername = Username;
+            strPassword = Password;
+        }
 
-            //CREATE SOME BASE STRINGS SO THAT YOU CAN LOOK AT THESE
-            //SEPARATELY FROM THE COMMANDS THEY RUN IN
+        public DataTable ImportData(string table)
+        {
+            //"jdbc:sqlserver://CTASV20R2DRW.tamuct.edu;databaseName=INVENTORY;user=Luisvargas;password=Tamayo005;"
+            //INTEGRATED SECURITY 
+            String strConnection = "{0}; + {1}; + {2}; + {3};", strDatabase,databaseName,strUserName,strPassword;
 
-            //INTEGRATED SECURITY - NEXT LINE SHOULD BE UNCOMMENTED
-            String strConnect = " ";
-            //“Data Source=(local);Initial Catalog=master;Integrated Security=SSPI”;
+            SqlConnection con = new SqlConnection(strConnection);
 
-            // SQL SECURITY
-
-            //string strConnect = “Data Source=(local);Initial Catalog=master;User Id=sa;Password=MyPass”;
-
-
-
-            string strCommand = " SELECT Name, database_id as ID FROM sys.databases";
-            SqlDataReader rsMyRS = null;
-            SqlConnection cnMyConn = new SqlConnection(strConnect);
-
+            DataTable dtRecord;
 
             try
-            {   // “Open” the connection (this is the first time it actually   
-                // contacts the database server)
+            {
 
-                cnMyConn.Open();
+
+                con = new SqlConnection(strConnection);
+
+                con.Open();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = con;
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.CommandText = "Select* FROM" + table;
+                SqlDataAdapter sqlDataAdap = new SqlDataAdapter(sqlCmd);
+
+                dtRecord = new DataTable();
+                sqlDataAdap.Fill(dtRecord);
+
+                // “Open” the connection(this is the first time it actually
+                //contacts the database server)
+
+                //cnMyConn.Open();
 
                 //CREATE THE COMMAND OBJECT NOW
-                SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
+                //SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
 
                 //CREATE THE RESULT SET
-                rsMyRS = sqlMyCommand.ExecuteReader();
+                //rsMyRS = sqlMyCommand.ExecuteReader();
 
                 //OUTPUT WHAT YOU GOT
-                while (rsMyRS.Read())
-                {
-                    //WRITE OUT THE FIRST ORDINAL NUMBERS HERE
-                    //COLUMNS. WE CAN ALSO REFER TO THE COLUMN BY NAME
-                    //Console.WriteLine(rsMyRS[*Name *]);
-                }
+                //while (rsMyRS.Read())
+                //{
+                //    WRITE OUT THE FIRST ORDINAL NUMBERS HERE
+                //    COLUMNS.WE CAN ALSO REFER TO THE COLUMN BY NAME
+                //    Console.WriteLine(rsMyRS[*Name *]);
+                //}
             }
             finally
             {
                 //CLOSE
-                cnMyConn.Close();
+                con.Close();
 
             }
+
+            return dtRecord;
+
 
         }
     }
