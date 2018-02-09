@@ -11,17 +11,13 @@ namespace Vargas_Tamayo_SQL_Project2
 {
     class mySQL
     {
-<<<<<<< HEAD
-        //randoms
-        static void SQL()
-=======
+
         private static string strDatabase;
         private static string databaseName;
         private static string strUsername;
         private static string strPassword;
 
         public mySQL(string Username, string Password)
->>>>>>> 4e7d403491d58e1273012c5c5fef79650930f710
         {
             strDatabase = "CTASV20R2DRW.tamuct.edu";
             databaseName = "databaseName=Luis2FirstAssigment";
@@ -35,7 +31,8 @@ namespace Vargas_Tamayo_SQL_Project2
             //INTEGRATED SECURITY 
 
             //DataSource=CTASV20R2DRW.tamuct.edu;InitialCatalog=Luis2;UserID=Luis2;Password=******;
-            String strConnection = "DataSource={0}; + {1}; +{2}; +{3};", strDatabase,databaseName,strUserName,strPassword;
+            String strConnection = "Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID = Luis2; Password = Vargas005";
+            //"Data Source={0}; + {1}; +{2}; +{3};", strDatabase,databaseName,strUserName,strPassword;
 
             SqlConnection con = new SqlConnection(strConnection);
 
@@ -52,7 +49,7 @@ namespace Vargas_Tamayo_SQL_Project2
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = "Select* FROM" + table;
+                sqlCmd.CommandText = "Select* FROM Luis2FirstAssignment.db_owner." + table;
                 SqlDataAdapter sqlDataAdap = new SqlDataAdapter(sqlCmd);
 
                 dtRecord = new DataTable();

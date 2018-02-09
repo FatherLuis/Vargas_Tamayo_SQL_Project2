@@ -20,7 +20,7 @@ namespace Vargas_Tamayo_SQL_Project2
         private void mnuDatabaseView_Click(object sender, EventArgs e)
         {
             //INSTANTIATES FRAME
-            Database frmDatabase = new Database();
+            Database frmDatabase = new Database("Luis2","Vargas005");
 
             //OPEN DIALOG
             frmDatabase.ShowDialog();
