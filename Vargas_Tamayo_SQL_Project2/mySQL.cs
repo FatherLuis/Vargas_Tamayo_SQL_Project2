@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Vargas_Tamayo_SQL_Project2
 {
@@ -20,19 +21,18 @@ namespace Vargas_Tamayo_SQL_Project2
         public mySQL(string Username, string Password)
         {
             strDatabase = "CTASV20R2DRW.tamuct.edu";
-            databaseName = "databaseName=Luis2FirstAssigment";
-            strUsername = Username;
-            strPassword = Password;
+            databaseName = "Initial Catalog = Luis2";
+            strUsername = "User ID = "+Username;
+            strPassword = "Password =" + Password;
         }
 
         public DataTable ImportData(string table)
         {
-            //"jdbc:sqlserver://CTASV20R2DRW.tamuct.edu;databaseName=INVENTORY;user=Luisvargas;password=Tamayo005;"
-            //INTEGRATED SECURITY 
 
-            //DataSource=CTASV20R2DRW.tamuct.edu;InitialCatalog=Luis2;UserID=Luis2;Password=******;
-            String strConnection = "Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID = Luis2; Password = Vargas005";
-            //"Data Source={0}; + {1}; +{2}; +{3};", strDatabase,databaseName,strUserName,strPassword;
+
+            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
+
 
             SqlConnection con = new SqlConnection(strConnection);
 
@@ -82,6 +82,68 @@ namespace Vargas_Tamayo_SQL_Project2
             }
 
             return dtRecord;
+
+
+        }
+
+        public void InsertData()
+        {
+
+
+            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
+
+
+            SqlConnection con = new SqlConnection(strConnection);
+
+
+
+            try
+            {
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = con;
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.CommandText = 
+                    "Select* ";
+                SqlDataAdapter sqlDataAdap = new SqlDataAdapter(sqlCmd);
+
+
+                con = new SqlConnection(strConnection);
+
+                con.Open();
+
+
+                // “Open” the connection(this is the first time it actually
+                //contacts the database server)
+
+                //cnMyConn.Open();
+
+                //CREATE THE COMMAND OBJECT NOW
+                //SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
+
+                //CREATE THE RESULT SET
+                //rsMyRS = sqlMyCommand.ExecuteReader();
+
+                //OUTPUT WHAT YOU GOT
+                //while (rsMyRS.Read())
+                //{
+                //    WRITE OUT THE FIRST ORDINAL NUMBERS HERE
+                //    COLUMNS.WE CAN ALSO REFER TO THE COLUMN BY NAME
+                //    Console.WriteLine(rsMyRS[*Name *]);
+                //}
+            }
+            finally
+            {
+                //CLOSE
+                con.Close();
+
+            }
+
+
+
+
+
 
 
         }
