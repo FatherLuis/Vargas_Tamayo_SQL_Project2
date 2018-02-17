@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Vargas_Tamayo_SQL_Project2
 {
+   
+
     public partial class AddPerson : Form
     {
-        public AddPerson()
+        private mySQL SQL;
+
+        public AddPerson(String username, String password)
         {
             InitializeComponent();
+            SQL = new mySQL(username,password);
+
         }
 
 
@@ -70,6 +76,34 @@ namespace Vargas_Tamayo_SQL_Project2
         public void setTextTextSix(string text)
         {
             txtSix.Text = text;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show(this.Text);
+            ////////////////
+            //I SHOULD HAVE A METHOD THAT CHECKS THE ENTERED INFORMATION 
+            ///////////////////////
+
+            if (this.Text == "Add Faculty")
+            {
+
+                SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+
+            }
+            else if(this.Text == "Add Student")
+            {
+
+                SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+
+            }
+
+            Close();
+
+
+
+
         }
         ///////////////////////////////////////////////
 

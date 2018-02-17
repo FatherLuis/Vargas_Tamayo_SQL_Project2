@@ -13,11 +13,16 @@ namespace Vargas_Tamayo_SQL_Project2
     public partial class Database : Form
     {
         private mySQL myDatabase;
+        private string user;
+        private string pass;
 
         public Database(String username, String password)
         {
             InitializeComponent();
             myDatabase = new mySQL(username, password);
+
+            user = username;
+            pass = password;
         }
 
 
@@ -37,7 +42,9 @@ namespace Vargas_Tamayo_SQL_Project2
 
         private void mnuEditAddStudent_Click(object sender, EventArgs e)
         {
-            AddPerson frmStudent = new AddPerson();
+            AddPerson frmStudent = new AddPerson(user,pass);
+
+            frmStudent.Text = "Add Student";
 
             frmStudent.setTextLabelOne("Student ID");
             frmStudent.setTextLabelTwo("First Name");
@@ -47,12 +54,14 @@ namespace Vargas_Tamayo_SQL_Project2
             frmStudent.setTextLabelSix("High School");
 
             frmStudent.ShowDialog();
+            dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
+            dgvViewData.Visible = true;
 
         }
 
         private void mnuEditAddFaculty_Click(object sender, EventArgs e)
         {
-            AddPerson frmFaculty = new AddPerson();
+            AddPerson frmFaculty = new AddPerson(user,pass);
 
             frmFaculty.setTextLabelOne("Faculty ID");
             frmFaculty.setTextLabelTwo("First Name");
