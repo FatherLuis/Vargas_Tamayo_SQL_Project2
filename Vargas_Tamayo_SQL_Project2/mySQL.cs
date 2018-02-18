@@ -111,25 +111,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
                 sqlCmd.ExecuteNonQuery();
 
-
-                // “Open” the connection(this is the first time it actually
-                //contacts the database server)
-
-                //cnMyConn.Open();
-
-                //CREATE THE COMMAND OBJECT NOW
-                //SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
-
-                //CREATE THE RESULT SET
-                //rsMyRS = sqlMyCommand.ExecuteReader();
-
-                //OUTPUT WHAT YOU GOT
-                //while (rsMyRS.Read())
-                //{
-                //    WRITE OUT THE FIRST ORDINAL NUMBERS HERE
-                //    COLUMNS.WE CAN ALSO REFER TO THE COLUMN BY NAME
-                //    Console.WriteLine(rsMyRS[*Name *]);
-                //}
             }
             catch (Exception ex)
             {
@@ -336,6 +317,62 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
             }
+
+        }
+
+        public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6,String table)
+        {
+            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
+
+            SqlConnection con = null;
+            try
+            {
+                con = new SqlConnection(strConnection);
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = con;
+                sqlCmd.CommandType = CommandType.Text;
+
+
+                if (table == "Student_Table")
+                {
+
+
+                    sqlCmd.CommandText = String.Format("UPDATE [Luis2FirstAssignment].[db_owner].[Student_Table]" +
+                                                     "SET [First Name] = '{1}',[Last Name]='{2}',[Elementary School]='{3}',[Middle School]='{4}',[High School]='{5}'" +
+                                                     "WHERE ID = '{0}'",
+                                                     ID, txt2, txt3, txt4, txt5, txt6);
+                }
+                else if (table == "Faculty_Table")
+                {
+                    sqlCmd.CommandText = String.Format("UPDATE [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
+                                                     "SET [First Name]='{1}',[Last Name]='{2}',[School]='{3}',[Department]='{4}',[Highest Degreel]='{5}'" +
+                                                     "WHERE ID ='{0}'S",
+                                                     ID, txt2, txt3, txt4, txt5, txt6);
+                }
+
+
+                con.Open();
+
+                sqlCmd.ExecuteNonQuery();
+
+            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
+            //}
+            finally
+            {
+
+
+                //CLOSE
+                con.Close();
+
+
+            }
+
+
+
 
         }
 

@@ -80,8 +80,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show(this.Text);
             ////////////////
             //I SHOULD HAVE A METHOD THAT CHECKS THE ENTERED INFORMATION 
             ///////////////////////
@@ -92,11 +90,20 @@ namespace Vargas_Tamayo_SQL_Project2
                 SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
             }
-            else if(this.Text == "Add Student")
+            else if (this.Text == "Add Student")
             {
 
                 SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
+            }
+            else if (this.Text == "Edit Student")
+            {
+                SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Student_Table");
+
+            }
+            else if(this.Text == "Edit Faculty")
+            {
+                SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Faculty_Table");
             }
 
             Close();
