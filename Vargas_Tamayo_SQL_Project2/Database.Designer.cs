@@ -38,6 +38,8 @@
             this.mnuEditView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditViewStudent = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditViewFaculty = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditEditRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditDeleteRow = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvViewData = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewData)).BeginInit();
@@ -51,8 +53,7 @@
             this.mnuEdit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(1135, 46);
+            this.menuStrip1.Size = new System.Drawing.Size(728, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -61,22 +62,24 @@
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileExit});
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(64, 38);
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
             this.mnuFile.Text = "&File";
             // 
             // mnuFileExit
             // 
             this.mnuFileExit.Name = "mnuFileExit";
-            this.mnuFileExit.Size = new System.Drawing.Size(151, 38);
+            this.mnuFileExit.Size = new System.Drawing.Size(92, 22);
             this.mnuFileExit.Text = "&Exit";
             // 
             // mnuEdit
             // 
             this.mnuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuEditAdd,
-            this.mnuEditView});
+            this.mnuEditView,
+            this.mnuEditEditRow,
+            this.mnuEditDeleteRow});
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(67, 38);
+            this.mnuEdit.Size = new System.Drawing.Size(39, 20);
             this.mnuEdit.Text = "&Edit";
             // 
             // mnuEditAdd
@@ -85,20 +88,20 @@
             this.mnuEditAddStudent,
             this.mnuEditAddFaculty});
             this.mnuEditAdd.Name = "mnuEditAdd";
-            this.mnuEditAdd.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditAdd.Size = new System.Drawing.Size(152, 22);
             this.mnuEditAdd.Text = "&Add";
             // 
             // mnuEditAddStudent
             // 
             this.mnuEditAddStudent.Name = "mnuEditAddStudent";
-            this.mnuEditAddStudent.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditAddStudent.Size = new System.Drawing.Size(142, 22);
             this.mnuEditAddStudent.Text = "&New Student";
             this.mnuEditAddStudent.Click += new System.EventHandler(this.mnuEditAddStudent_Click);
             // 
             // mnuEditAddFaculty
             // 
             this.mnuEditAddFaculty.Name = "mnuEditAddFaculty";
-            this.mnuEditAddFaculty.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditAddFaculty.Size = new System.Drawing.Size(142, 22);
             this.mnuEditAddFaculty.Text = "New &Faculty";
             this.mnuEditAddFaculty.Click += new System.EventHandler(this.mnuEditAddFaculty_Click);
             // 
@@ -108,22 +111,36 @@
             this.mnuEditViewStudent,
             this.mnuEditViewFaculty});
             this.mnuEditView.Name = "mnuEditView";
-            this.mnuEditView.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditView.Size = new System.Drawing.Size(152, 22);
             this.mnuEditView.Text = "&View";
             // 
             // mnuEditViewStudent
             // 
             this.mnuEditViewStudent.Name = "mnuEditViewStudent";
-            this.mnuEditViewStudent.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditViewStudent.Size = new System.Drawing.Size(152, 22);
             this.mnuEditViewStudent.Text = "&Students";
             this.mnuEditViewStudent.Click += new System.EventHandler(this.mnuEditViewStudent_Click);
             // 
             // mnuEditViewFaculty
             // 
             this.mnuEditViewFaculty.Name = "mnuEditViewFaculty";
-            this.mnuEditViewFaculty.Size = new System.Drawing.Size(268, 38);
+            this.mnuEditViewFaculty.Size = new System.Drawing.Size(152, 22);
             this.mnuEditViewFaculty.Text = "&Faculty";
             this.mnuEditViewFaculty.Click += new System.EventHandler(this.mnuEditViewFaculty_Click);
+            // 
+            // mnuEditEditRow
+            // 
+            this.mnuEditEditRow.Name = "mnuEditEditRow";
+            this.mnuEditEditRow.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditEditRow.Text = "&EditRow";
+            this.mnuEditEditRow.Click += new System.EventHandler(this.mnuEditEditRow_Click);
+            // 
+            // mnuEditDeleteRow
+            // 
+            this.mnuEditDeleteRow.Name = "mnuEditDeleteRow";
+            this.mnuEditDeleteRow.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditDeleteRow.Text = "DeleteRow";
+            this.mnuEditDeleteRow.Click += new System.EventHandler(this.mnuEditDeleteRow_Click);
             // 
             // dgvViewData
             // 
@@ -132,26 +149,25 @@
             this.dgvViewData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViewData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvViewData.Location = new System.Drawing.Point(0, 46);
-            this.dgvViewData.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvViewData.Location = new System.Drawing.Point(0, 24);
+            this.dgvViewData.Margin = new System.Windows.Forms.Padding(2);
             this.dgvViewData.MultiSelect = false;
             this.dgvViewData.Name = "dgvViewData";
             this.dgvViewData.ReadOnly = true;
             this.dgvViewData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvViewData.RowTemplate.Height = 33;
-            this.dgvViewData.Size = new System.Drawing.Size(1135, 677);
+            this.dgvViewData.Size = new System.Drawing.Size(728, 352);
             this.dgvViewData.TabIndex = 1;
             this.dgvViewData.Visible = false;
             // 
             // Database
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 723);
+            this.ClientSize = new System.Drawing.Size(728, 376);
             this.Controls.Add(this.dgvViewData);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Database";
             this.Text = "Database";
             this.menuStrip1.ResumeLayout(false);
@@ -175,5 +191,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEditViewStudent;
         private System.Windows.Forms.ToolStripMenuItem mnuEditViewFaculty;
         private System.Windows.Forms.DataGridView dgvViewData;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditEditRow;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditDeleteRow;
     }
 }

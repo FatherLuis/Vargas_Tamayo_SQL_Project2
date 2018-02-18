@@ -178,25 +178,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
                 sqlCmd.ExecuteNonQuery();
 
-
-                // “Open” the connection(this is the first time it actually
-                //contacts the database server)
-
-                //cnMyConn.Open();
-
-                //CREATE THE COMMAND OBJECT NOW
-                //SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
-
-                //CREATE THE RESULT SET
-                //rsMyRS = sqlMyCommand.ExecuteReader();
-
-                //OUTPUT WHAT YOU GOT
-                //while (rsMyRS.Read())
-                //{
-                //    WRITE OUT THE FIRST ORDINAL NUMBERS HERE
-                //    COLUMNS.WE CAN ALSO REFER TO THE COLUMN BY NAME
-                //    Console.WriteLine(rsMyRS[*Name *]);
-                //}
             }
             catch (Exception ex)
             {
@@ -220,6 +201,104 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        public String[] GetRowData(String ID,String table)
+        {
+
+            String[] strList = new String[6];
+
+
+            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
+
+            SqlConnection con = null;
+
+            try
+            {
+                con = new SqlConnection(strConnection);
+
+                SqlCommand cmd = new SqlCommand(String.Format(
+                    "SELECT *" +
+                    "FROM[Luis2FirstAssignment].[db_owner].[{0}] " +
+                    "WHERE Luis2FirstAssignment.[db_owner].[{1}].ID = {2} ",table,table,ID), con);
+
+
+                    //String.Format("SELECT * " +
+                    //                                "FROM [Luis2FirstAssignment].[db_owner].{0}" +
+                    //                                "WHERE Luis2FirstAssignment.[db_owner].{1}.ID = {2}", table, table, ID), con);
+
+
+
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (table == "Student_Table")
+                {
+
+                    while (reader.Read())
+                    {
+
+                        strList[0] = reader["ID"].ToString();
+                        strList[1] = reader["First Name"].ToString();
+                        strList[2] = reader["Last Name"].ToString();
+                        strList[3] = reader["Elementary School"].ToString();
+                        strList[4] = reader["Middle School"].ToString();
+                        strList[5] = reader["High School"].ToString();
+                    }
+
+                    reader.Close();
+
+                }
+                else if (table == "Faculty_Table")
+                {
+                    while (reader.Read())
+                    {
+
+                        strList[0] = reader["ID"].ToString();
+                        strList[1] = reader["First Name"].ToString();
+                        strList[2] = reader["Last Name"].ToString();
+                        strList[3] = reader["School"].ToString();
+                        strList[4] = reader["Department"].ToString();
+                        strList[5] = reader["Highest Degree"].ToString();
+                    }
+
+                    reader.Close();
+
+                }
+            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+
+            //  //  "CONNECTION BAD, TRY AGAIN LATER"
+            //}
+            finally
+            {
+
+
+                //CLOSE
+                con.Close();
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            return strList;
+
+        }
 
 
 

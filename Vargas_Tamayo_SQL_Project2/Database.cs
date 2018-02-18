@@ -26,14 +26,6 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
 
-
-        private void mnuEditViewStudent_Click(object sender, EventArgs e)
-        {
-            dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
-            dgvViewData.Visible = true;
-
-        }
-
         private void mnuEditViewFaculty_Click(object sender, EventArgs e)
         {
             dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
@@ -71,6 +63,106 @@ namespace Vargas_Tamayo_SQL_Project2
             frmFaculty.setTextLabelSix("Highest Degree");
 
             frmFaculty.ShowDialog();
+        }
+
+        private void mnuEditEditRow_Click(object sender, EventArgs e)
+        {
+            if (dgvViewData.CurrentCell != null)
+            {
+                String ID = dgvViewData.CurrentRow.Cells[0].Value.ToString();
+
+                AddPerson frmStudent = new AddPerson(user, pass);
+
+
+                if (ID.StartsWith("1"))
+                {
+
+                    frmStudent.Text = "Edit Student";
+
+                    frmStudent.setTextLabelOne("Student ID");
+                    frmStudent.setTextLabelTwo("First Name");
+                    frmStudent.setTextLabelThree("Last Name");
+                    frmStudent.setTextLabelFour("Elementary School");
+                    frmStudent.setTextLabelFive("Middle School");
+                    frmStudent.setTextLabelSix("High School");
+
+
+
+
+                    String[] selectedRowData = myDatabase.GetRowData(ID, "Student_Table");
+
+                    frmStudent.setTextTextOne(selectedRowData[0]);
+                    frmStudent.setTextTextTwo(selectedRowData[1]);
+                    frmStudent.setTextTextThree(selectedRowData[2]);
+                    frmStudent.setTextTextFour(selectedRowData[3]);
+                    frmStudent.setTextTextFive(selectedRowData[4]);
+                    frmStudent.setTextTextSix(selectedRowData[5]);
+
+                    frmStudent.ShowDialog();
+
+
+                }
+                else if(ID.StartsWith("4"))
+                {
+                    frmStudent.Text = "Edit Faculty";
+
+                    frmStudent.setTextLabelOne("Faculty ID");
+                    frmStudent.setTextLabelTwo("First Name");
+                    frmStudent.setTextLabelThree("Last Name");
+                    frmStudent.setTextLabelFour("School");
+                    frmStudent.setTextLabelFive("Department");
+                    frmStudent.setTextLabelSix("Highest Degree");
+
+
+
+
+                    String[] selectedRowData = myDatabase.GetRowData(ID, "Faculty_Table");
+
+                    frmStudent.setTextTextOne(selectedRowData[0]);
+                    frmStudent.setTextTextTwo(selectedRowData[1]);
+                    frmStudent.setTextTextThree(selectedRowData[2]);
+                    frmStudent.setTextTextFour(selectedRowData[3]);
+                    frmStudent.setTextTextFive(selectedRowData[4]);
+                    frmStudent.setTextTextSix(selectedRowData[5]);
+
+                    frmStudent.ShowDialog();
+                }
+
+
+
+
+
+            }
+            else if(dgvViewData.Visible != true)
+            {
+                MessageBox.Show("Select a table(s) to view, then try again");
+            }
+            else
+            {
+                MessageBox.Show("Select the row you would like to edit");
+            }
+
+        }
+
+        private void mnuEditDeleteRow_Click(object sender, EventArgs e)
+        {
+            if (dgvViewData.CurrentCell != null)
+            {
+
+
+            }
+            else
+            {
+                MessageBox.Show("Select the row you would like to delete");
+            }
+
+        }
+
+        private void mnuEditViewStudent_Click(object sender, EventArgs e)
+        {        
+            dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
+            dgvViewData.Visible = true;
+
         }
     }
 }
