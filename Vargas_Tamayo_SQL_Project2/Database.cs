@@ -100,6 +100,8 @@ namespace Vargas_Tamayo_SQL_Project2
 
                     frmStudent.ShowDialog();
 
+                    dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
+                    dgvViewData.Visible = true;
 
                 }
                 else if(ID.StartsWith("4"))
@@ -126,6 +128,9 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextTextSix(selectedRowData[5]);
 
                     frmStudent.ShowDialog();
+
+                    dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
+                    dgvViewData.Visible = true;
                 }
 
 
@@ -149,12 +154,28 @@ namespace Vargas_Tamayo_SQL_Project2
             if (dgvViewData.CurrentCell != null)
             {
 
+                String ID = dgvViewData.CurrentRow.Cells[0].Value.ToString();
 
+                if (ID.StartsWith("1"))
+                {
+                    myDatabase.DeleteRow(ID,"Student_Table");
+                    dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
+                    dgvViewData.Visible = true;
+                }
+
+                else if (ID.StartsWith("4"))
+                {
+                    myDatabase.DeleteRow(ID,"Faculty_Table");
+                    dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
+                    dgvViewData.Visible = true;
+
+                }
             }
             else
             {
                 MessageBox.Show("Select the row you would like to delete");
             }
+
 
         }
 

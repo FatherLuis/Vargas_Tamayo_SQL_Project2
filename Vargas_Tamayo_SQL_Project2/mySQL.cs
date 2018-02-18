@@ -219,7 +219,7 @@ namespace Vargas_Tamayo_SQL_Project2
                 SqlCommand cmd = new SqlCommand(String.Format(
                     "SELECT *" +
                     "FROM[Luis2FirstAssignment].[db_owner].[{0}] " +
-                    "WHERE Luis2FirstAssignment.[db_owner].[{1}].ID = {2} ",table,table,ID), con);
+                    "WHERE Luis2FirstAssignment.[db_owner].[{0}].ID = {1} ",table,ID), con);
 
 
                     //String.Format("SELECT * " +
@@ -297,6 +297,45 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
             return strList;
+
+        }
+
+        public void DeleteRow(String ID,String table)
+        {
+            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
+
+            SqlConnection con = null;
+            try
+            {
+                con = new SqlConnection(strConnection);
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.Connection = con;
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.CommandText = String.Format("DELETE " +
+                                    "FROM [Luis2FirstAssignment].[db_owner].[{0}]" +
+                                    "WHERE [Luis2FirstAssignment].[db_owner].[{1}].[ID] = {2} ", table,table, ID);
+
+
+                con.Open();
+
+                sqlCmd.ExecuteNonQuery();
+
+            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
+            //}
+            finally
+            {
+
+
+                //CLOSE
+                con.Close();
+
+
+            }
 
         }
 
