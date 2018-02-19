@@ -25,7 +25,13 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
         //////////////////////////////////////////////
-
+        /// <summary>
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void setTextLabelOne(string text)
         {
             lblOne.Text = text;
@@ -52,7 +58,13 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         ///////////////////////////////////////////////
-
+        /// <summary>
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void setTextTextOne(string text)
         {
             txtOne.Text = text;
@@ -78,6 +90,14 @@ namespace Vargas_Tamayo_SQL_Project2
             txtSix.Text = text;
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
             ////////////////

@@ -10,6 +10,16 @@ using System.Windows.Forms;
 
 namespace Vargas_Tamayo_SQL_Project2
 {
+    /// <summary>
+    /// Class name: 
+    /// Class Author: 
+    /// Purpose of the class: 
+    /// Date: 
+    /// List of changes with dates: 
+    /// Special Notes: 
+    /// </summary>
+
+
     public partial class Database : Form
     {
         private mySQL myDatabase;
@@ -25,13 +35,28 @@ namespace Vargas_Tamayo_SQL_Project2
             pass = password;
         }
 
-
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditViewFaculty_Click(object sender, EventArgs e)
         {
             dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
             dgvViewData.Visible = true;
         }
-
+ 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditAddStudent_Click(object sender, EventArgs e)
         {
             AddPerson frmStudent = new AddPerson(user,pass);
@@ -45,12 +70,23 @@ namespace Vargas_Tamayo_SQL_Project2
             frmStudent.setTextLabelFive("Middle School");
             frmStudent.setTextLabelSix("High School");
 
+            this.Visible = false;
             frmStudent.ShowDialog();
+            this.Visible = true;
+
             dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
             dgvViewData.Visible = true;
 
         }
-
+   
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditAddFaculty_Click(object sender, EventArgs e)
         {
             AddPerson frmFaculty = new AddPerson(user,pass);
@@ -62,9 +98,19 @@ namespace Vargas_Tamayo_SQL_Project2
             frmFaculty.setTextLabelFive("Department");
             frmFaculty.setTextLabelSix("Highest Degree");
 
+            this.Visible = false;
             frmFaculty.ShowDialog();
+            this.Visible = true;
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditEditRow_Click(object sender, EventArgs e)
         {
             if (dgvViewData.CurrentCell != null)
@@ -98,7 +144,11 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextTextFive(selectedRowData[4]);
                     frmStudent.setTextTextSix(selectedRowData[5]);
 
+                    this.Visible = false;
+
                     frmStudent.ShowDialog();
+
+                    this.Visible = true;
 
                     dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
                     dgvViewData.Visible = true;
@@ -127,7 +177,9 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextTextFive(selectedRowData[4]);
                     frmStudent.setTextTextSix(selectedRowData[5]);
 
+                    this.Visible = false;
                     frmStudent.ShowDialog();
+                    this.Visible = true;
 
                     dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
                     dgvViewData.Visible = true;
@@ -149,6 +201,14 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditDeleteRow_Click(object sender, EventArgs e)
         {
             if (dgvViewData.CurrentCell != null)
@@ -179,11 +239,34 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         private void mnuEditViewStudent_Click(object sender, EventArgs e)
         {        
             dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
             dgvViewData.Visible = true;
 
         }
+
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
+        private void mnuFileExit_Click(object sender, EventArgs e)
+        {
+            //Close this form
+            Close();
+        }
+
     }
 }

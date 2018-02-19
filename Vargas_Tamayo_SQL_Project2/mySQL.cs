@@ -18,6 +18,14 @@ namespace Vargas_Tamayo_SQL_Project2
         private static string strUsername;
         private static string strPassword;
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public mySQL(string Username, string Password)
         {
             strDatabase = "CTASV20R2DRW.tamuct.edu";
@@ -26,6 +34,14 @@ namespace Vargas_Tamayo_SQL_Project2
             strPassword = "Password =" + Password;
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public DataTable ImportData(string table)
         {
 
@@ -86,6 +102,14 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void InsertDataStudent(String ID, String FirstName, String LastName, String ElemSchool, String MidSchool, String HighSchool)
         {
 
@@ -134,6 +158,14 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void InsertDataFaculty(String ID, String FirstName, String LastName, String School, String Department, String HighestDegree)
         {
 
@@ -182,6 +214,14 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public String[] GetRowData(String ID,String table)
         {
 
@@ -281,6 +321,14 @@ namespace Vargas_Tamayo_SQL_Project2
 
         }
 
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void DeleteRow(String ID,String table)
         {
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
@@ -319,7 +367,15 @@ namespace Vargas_Tamayo_SQL_Project2
             }
 
         }
-
+       
+        /// <summary>
+        /// Method Name: 
+        /// Purpose: 
+        /// Parameter: 
+        /// Method Input: 
+        /// Return Value:
+        /// Date: 
+        /// </summary>
         public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6,String table)
         {
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
