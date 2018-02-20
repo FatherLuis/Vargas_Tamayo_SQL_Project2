@@ -77,7 +77,7 @@
             // mnuDatabaseView
             // 
             this.mnuDatabaseView.Name = "mnuDatabaseView";
-            this.mnuDatabaseView.Size = new System.Drawing.Size(152, 22);
+            this.mnuDatabaseView.Size = new System.Drawing.Size(99, 22);
             this.mnuDatabaseView.Text = "&View";
             this.mnuDatabaseView.Click += new System.EventHandler(this.mnuDatabaseView_Click);
             // 
@@ -111,6 +111,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "District Server";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

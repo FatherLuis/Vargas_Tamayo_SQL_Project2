@@ -118,41 +118,74 @@ namespace Vargas_Tamayo_SQL_Project2
             //I SHOULD HAVE A METHOD THAT CHECKS THE ENTERED INFORMATION 
             ///////////////////////
 
-            if (this.Text == "Add Faculty")
+            if (isfilled())
             {
-                //ADDS A NEW ROW IN THE FACULTY TABLE
-                SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+
+                if (this.Text == "Add Faculty")
+                {
+                    //ADDS A NEW ROW IN THE FACULTY TABLE
+                    SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+
+                }
+                else if (this.Text == "Add Student")
+                {
+                    //ADDS A NEW ROW IN THE STUDENT TABLE
+                    SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+
+                }
+                else if (this.Text == "Edit Student")
+                {
+                    //UPDATES A ROW IN THE STUDENT TABLE
+                    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Student_Table");
+
+                }
+                else if (this.Text == "Edit Faculty")
+                {
+                    //UPDATES A ROW IN THE FACULTY TABLE
+                    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Faculty_Table");
+                }
+
+                //CLOSES THE FORM
+                Close();
+            }
+            else
+            {
+                txtStatus.Text = "There are blank textboxes";
 
             }
-            else if (this.Text == "Add Student")
-            {
-                //ADDS A NEW ROW IN THE STUDENT TABLE
-                SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+        }
 
-            }
-            else if (this.Text == "Edit Student")
-            {
-                //UPDATES A ROW IN THE STUDENT TABLE
-                SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Student_Table");
-
-            }
-            else if(this.Text == "Edit Faculty")
-            {
-                //UPDATES A ROW IN THE FACULTY TABLE
-                SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Faculty_Table");
-            }
-
-            //CLOSES THE FORM
-            Close();
+        /// <summary>
+        /// Method Name: btnCancel()
+        /// Purpose: closes form
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/19/2018
+        /// </summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //CLOSE FORM
+            this.Close();
         }
 
 
 
+        private Boolean isfilled()
+        {
+            if (txtTwo.Text != String.Empty && txtThree.Text != String.Empty)
+            {
+                if (txtFour.Text != String.Empty && txtFive.Text != String.Empty)
+                {
 
+                    if (txtSix.Text != String.Empty)
+                    {
+                        return true;
+                    }
+                }
+            }
 
-
-
-
-
+            return false; ;
+        }
     }
 }

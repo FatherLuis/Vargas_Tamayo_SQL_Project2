@@ -143,7 +143,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
 
             SqlConnection con = null;
             try
@@ -154,7 +153,7 @@ namespace Vargas_Tamayo_SQL_Project2
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.CommandText = String.Format("INSERT INTO [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
-                                                 "([ID],[First Name],[Last Name],[School],[Department],[Highest Degreel])" +
+                                                 "([ID],[First Name],[Last Name],[School],[Department],[Highest Degree])" +
                                                  "VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
                                                  ID, FirstName, LastName, School, Department, HighestDegree);
 
@@ -164,10 +163,10 @@ namespace Vargas_Tamayo_SQL_Project2
                 sqlCmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
+            //}
             finally
             {
 
@@ -201,7 +200,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
 
             SqlConnection con = null;
 
@@ -213,13 +211,6 @@ namespace Vargas_Tamayo_SQL_Project2
                     "SELECT *" +
                     "FROM[Luis2FirstAssignment].[db_owner].[{0}] " +
                     "WHERE Luis2FirstAssignment.[db_owner].[{0}].ID = {1} ",table,ID), con);
-
-
-                    //String.Format("SELECT * " +
-                    //                                "FROM [Luis2FirstAssignment].[db_owner].{0}" +
-                    //                                "WHERE Luis2FirstAssignment.[db_owner].{1}.ID = {2}", table, table, ID), con);
-
-
 
                 con.Open();
 
@@ -275,20 +266,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             return strList;
 
         }
@@ -304,7 +281,6 @@ namespace Vargas_Tamayo_SQL_Project2
         public void DeleteRow(String ID,String table)
         {
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
 
             SqlConnection con = null;
             try
@@ -351,7 +327,6 @@ namespace Vargas_Tamayo_SQL_Project2
         public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6,String table)
         {
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
 
             SqlConnection con = null;
             try
@@ -374,8 +349,8 @@ namespace Vargas_Tamayo_SQL_Project2
                 else if (table == "Faculty_Table")
                 {
                     sqlCmd.CommandText = String.Format("UPDATE [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
-                                                     "SET [First Name]='{1}',[Last Name]='{2}',[School]='{3}',[Department]='{4}',[Highest Degreel]='{5}'" +
-                                                     "WHERE ID ='{0}'S",
+                                                     "SET [First Name]='{1}',[Last Name]='{2}',[School]='{3}',[Department]='{4}',[Highest Degree]='{5}'" +
+                                                     "WHERE ID ='{0}'",
                                                      ID, txt2, txt3, txt4, txt5, txt6);
                 }
 

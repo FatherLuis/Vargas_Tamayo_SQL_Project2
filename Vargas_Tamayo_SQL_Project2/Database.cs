@@ -73,6 +73,8 @@ namespace Vargas_Tamayo_SQL_Project2
             frmStudent.setTextLabelFive("Middle School");
             frmStudent.setTextLabelSix("High School");
 
+            frmStudent.setTextTextOne(GenerateID(1).ToString());
+
             //THIS FORM IS NOW INVISIBLE 
             this.Visible = false;
 
@@ -102,6 +104,9 @@ namespace Vargas_Tamayo_SQL_Project2
         {
             AddPerson frmFaculty = new AddPerson(user,pass);
 
+            //PLACES TEXT ON THE LABELS IN THE FORM
+            frmFaculty.Text = "Add Faculty";
+
             //SETS THE TEXT FOR THE LABELS IN THE FORM
             frmFaculty.setTextLabelOne("Faculty ID");
             frmFaculty.setTextLabelTwo("First Name");
@@ -109,6 +114,9 @@ namespace Vargas_Tamayo_SQL_Project2
             frmFaculty.setTextLabelFour("School Attending");
             frmFaculty.setTextLabelFive("Department");
             frmFaculty.setTextLabelSix("Highest Degree");
+
+
+            frmFaculty.setTextTextOne(GenerateID(4).ToString());
 
             //THIS FORM IS NOW NOT VISIBLE
             this.Visible = false;
@@ -118,6 +126,13 @@ namespace Vargas_Tamayo_SQL_Project2
 
             //THIS FORM IS NOW VISIBLE
             this.Visible = true;
+
+            //REFRESHES THE DATAVIEWGRID WITH THE STUDENT TABLE
+            dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
+
+            //DATAVIEWGRID IS NOW VISIBLE
+            dgvViewData.Visible = true;
+
         }
 
         /// <summary>
@@ -295,6 +310,45 @@ namespace Vargas_Tamayo_SQL_Project2
         {
             //Close this form
             Close();
+        }
+
+        /// <summary>
+        /// Method Name: GenerateID
+        /// Purpose: Generates an ID number
+        /// Parameter: int FirstNumber
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 2/19/2018
+        /// </summary>
+        private int GenerateID(int FirstNumber)
+        {
+            int ID = 0;
+
+            int init = 0;
+
+            Random rand = new Random();
+
+            if (FirstNumber == 1)
+            {
+                init = 100000;
+
+                init += rand.Next(10000, 99999);
+
+
+            }
+            else if(FirstNumber == 4)
+            {
+                init = 400000;
+
+                init += rand.Next(10000,99999);
+
+            }
+
+            ID = init;
+
+
+            return ID;
+
         }
 
     }

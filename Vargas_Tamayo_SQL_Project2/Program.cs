@@ -16,7 +16,7 @@ namespace Vargas_Tamayo_SQL_Project2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainGUI());
+            Application.Run(new LoginInterface());
         }
     }
 }

@@ -68,7 +68,7 @@
             // mnuFileExit
             // 
             this.mnuFileExit.Name = "mnuFileExit";
-            this.mnuFileExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileExit.Size = new System.Drawing.Size(92, 22);
             this.mnuFileExit.Text = "&Exit";
             this.mnuFileExit.ToolTipText = "Exit the Database";
             this.mnuFileExit.Click += new System.EventHandler(this.mnuFileExit_Click);
@@ -90,13 +90,13 @@
             this.mnuEditAddStudent,
             this.mnuEditAddFaculty});
             this.mnuEditAdd.Name = "mnuEditAdd";
-            this.mnuEditAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditAdd.Size = new System.Drawing.Size(130, 22);
             this.mnuEditAdd.Text = "&Add";
             // 
             // mnuEditAddStudent
             // 
             this.mnuEditAddStudent.Name = "mnuEditAddStudent";
-            this.mnuEditAddStudent.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditAddStudent.Size = new System.Drawing.Size(142, 22);
             this.mnuEditAddStudent.Text = "&New Student";
             this.mnuEditAddStudent.ToolTipText = "Add a new Student ";
             this.mnuEditAddStudent.Click += new System.EventHandler(this.mnuEditAddStudent_Click);
@@ -104,7 +104,7 @@
             // mnuEditAddFaculty
             // 
             this.mnuEditAddFaculty.Name = "mnuEditAddFaculty";
-            this.mnuEditAddFaculty.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditAddFaculty.Size = new System.Drawing.Size(142, 22);
             this.mnuEditAddFaculty.Text = "New &Faculty";
             this.mnuEditAddFaculty.ToolTipText = "Add a new Faculty";
             this.mnuEditAddFaculty.Click += new System.EventHandler(this.mnuEditAddFaculty_Click);
@@ -115,13 +115,13 @@
             this.mnuEditViewStudent,
             this.mnuEditViewFaculty});
             this.mnuEditView.Name = "mnuEditView";
-            this.mnuEditView.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditView.Size = new System.Drawing.Size(130, 22);
             this.mnuEditView.Text = "&View";
             // 
             // mnuEditViewStudent
             // 
             this.mnuEditViewStudent.Name = "mnuEditViewStudent";
-            this.mnuEditViewStudent.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditViewStudent.Size = new System.Drawing.Size(120, 22);
             this.mnuEditViewStudent.Text = "&Students";
             this.mnuEditViewStudent.ToolTipText = "View Student Database";
             this.mnuEditViewStudent.Click += new System.EventHandler(this.mnuEditViewStudent_Click);
@@ -129,7 +129,7 @@
             // mnuEditViewFaculty
             // 
             this.mnuEditViewFaculty.Name = "mnuEditViewFaculty";
-            this.mnuEditViewFaculty.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditViewFaculty.Size = new System.Drawing.Size(120, 22);
             this.mnuEditViewFaculty.Text = "&Faculty";
             this.mnuEditViewFaculty.ToolTipText = "View Faculty Database";
             this.mnuEditViewFaculty.Click += new System.EventHandler(this.mnuEditViewFaculty_Click);
@@ -137,7 +137,7 @@
             // mnuEditEditRow
             // 
             this.mnuEditEditRow.Name = "mnuEditEditRow";
-            this.mnuEditEditRow.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditEditRow.Size = new System.Drawing.Size(130, 22);
             this.mnuEditEditRow.Text = "&EditRow";
             this.mnuEditEditRow.ToolTipText = "Select a row to edit";
             this.mnuEditEditRow.Click += new System.EventHandler(this.mnuEditEditRow_Click);
@@ -145,7 +145,7 @@
             // mnuEditDeleteRow
             // 
             this.mnuEditDeleteRow.Name = "mnuEditDeleteRow";
-            this.mnuEditDeleteRow.Size = new System.Drawing.Size(152, 22);
+            this.mnuEditDeleteRow.Size = new System.Drawing.Size(130, 22);
             this.mnuEditDeleteRow.Text = "DeleteRow";
             this.mnuEditDeleteRow.ToolTipText = "Select a row to Delete";
             this.mnuEditDeleteRow.Click += new System.EventHandler(this.mnuEditDeleteRow_Click);
@@ -177,6 +177,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Database";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
