@@ -11,20 +11,18 @@ using System.Windows.Forms;
 namespace Vargas_Tamayo_SQL_Project2
 {
     /// <summary>
-    /// Class name: 
-    /// Class Author: 
-    /// Purpose of the class: 
-    /// Date: 
-    /// List of changes with dates: 
-    /// Special Notes: 
+    /// Class name: Database
+    /// Class Author: Luis E. Vargas Tamayo
+    /// Purpose of the class: Allows user to view the tables in the database, write, edit, and delete
+    /// Date: 02/19/2018
+    /// List of changes with dates: n/a
+    /// Special Notes: n/a
     /// </summary>
-
-
     public partial class Database : Form
     {
-        private mySQL myDatabase;
-        private string user;
-        private string pass;
+        private mySQL myDatabase; //CLASS-VARIABLE OF CLASS MYSQL
+        private string user; //CLASS-VARIABLE CONTAINS USERNAME
+        private string pass; //CLASS-VARIABLE CONTAINS PASSWORD
 
         public Database(String username, String password)
         {
@@ -36,31 +34,36 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditViewFaculty()
+        /// Purpose: Allows the user to view the Faculty Table
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditViewFaculty_Click(object sender, EventArgs e)
         {
+            //GETS TABLE FROM DATABASE AND SHOWS IT IN THE DATAVIEWGRID
             dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
+
+            //DATAVIEWGRID IS NOW VISIBLE
             dgvViewData.Visible = true;
         }
- 
+
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditAddStudent()
+        /// Purpose: Creates the form that allows user to enter information to database
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditAddStudent_Click(object sender, EventArgs e)
         {
             AddPerson frmStudent = new AddPerson(user,pass);
 
+
+            //PLACES TEXT ON THE LABELS IN THE FORM
             frmStudent.Text = "Add Student";
 
             frmStudent.setTextLabelOne("Student ID");
@@ -70,27 +73,36 @@ namespace Vargas_Tamayo_SQL_Project2
             frmStudent.setTextLabelFive("Middle School");
             frmStudent.setTextLabelSix("High School");
 
+            //THIS FORM IS NOW INVISIBLE 
             this.Visible = false;
+
+            //OPENS THE STUDENT FORM
             frmStudent.ShowDialog();
+
+            //THIS FORM IS NOW VISIBLE
             this.Visible = true;
 
+            //REFRESHES THE DATAVIEWGRID WITH THE STUDENT TABLE
             dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
+
+            //DATAVIEWGRID IS NOW VISIBLE
             dgvViewData.Visible = true;
 
         }
    
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditAddFaculty
+        /// Purpose: creates the form that allows user to enter information to the database
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditAddFaculty_Click(object sender, EventArgs e)
         {
             AddPerson frmFaculty = new AddPerson(user,pass);
 
+            //SETS THE TEXT FOR THE LABELS IN THE FORM
             frmFaculty.setTextLabelOne("Faculty ID");
             frmFaculty.setTextLabelTwo("First Name");
             frmFaculty.setTextLabelThree("Last Name");
@@ -98,31 +110,38 @@ namespace Vargas_Tamayo_SQL_Project2
             frmFaculty.setTextLabelFive("Department");
             frmFaculty.setTextLabelSix("Highest Degree");
 
+            //THIS FORM IS NOW NOT VISIBLE
             this.Visible = false;
+            
+            //OPENS FORM FOR FACULTY
             frmFaculty.ShowDialog();
+
+            //THIS FORM IS NOW VISIBLE
             this.Visible = true;
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditEditRow()
+        /// Purpose: Allows user to edit a row in the database
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditEditRow_Click(object sender, EventArgs e)
         {
+            //CHECKS IF A CELL WAS SELECTED
             if (dgvViewData.CurrentCell != null)
             {
+                //GETS THE STRING REPRESENTATION IN THE FIRST CELL OF THE ROW SELECTED
                 String ID = dgvViewData.CurrentRow.Cells[0].Value.ToString();
 
                 AddPerson frmStudent = new AddPerson(user, pass);
 
-
+                //IF THE ID STARTS WITH ONE, THEN EDIT IN THE STUDENT TABLE
                 if (ID.StartsWith("1"))
                 {
-
+                    //SETS THE TEXT OF THE LABELS IN THE FORM
                     frmStudent.Text = "Edit Student";
 
                     frmStudent.setTextLabelOne("Student ID");
@@ -134,9 +153,10 @@ namespace Vargas_Tamayo_SQL_Project2
 
 
 
-
+                    //THE ARRAY CONTAINS STRING INFORMATION FROM THE GIVEN ROW
                     String[] selectedRowData = myDatabase.GetRowData(ID, "Student_Table");
 
+                    //SETS THE TEXT OF THE TEXTBOXES IN THE FORM
                     frmStudent.setTextTextOne(selectedRowData[0]);
                     frmStudent.setTextTextTwo(selectedRowData[1]);
                     frmStudent.setTextTextThree(selectedRowData[2]);
@@ -144,18 +164,24 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextTextFive(selectedRowData[4]);
                     frmStudent.setTextTextSix(selectedRowData[5]);
 
+                    //THIS FORM IS NOT NOT VISIBLE
                     this.Visible = false;
 
+                    //OPENS A FORM TO EDIT SELECTED ROW
                     frmStudent.ShowDialog();
 
+                    //THIS FORM IS NOW VISIBLE
                     this.Visible = true;
 
+                    //UPDATES THE DATAVIEWGRID
                     dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
                     dgvViewData.Visible = true;
 
                 }
+                //IF THE ID STARTS WITH FOUR, THEN EDIT IN THE FACULTY TABLE
                 else if(ID.StartsWith("4"))
                 {
+                    //SETS THE TEXT OF THE LABELS IN THE FORM
                     frmStudent.Text = "Edit Faculty";
 
                     frmStudent.setTextLabelOne("Faculty ID");
@@ -166,10 +192,10 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextLabelSix("Highest Degree");
 
 
-
-
+                    //THE ARRAY CONTAINS STRING INFORMATION FROM THE GIVEN ROW
                     String[] selectedRowData = myDatabase.GetRowData(ID, "Faculty_Table");
 
+                    //SETS THE TEXT OF THE TEXTBOXES IN THE FORM
                     frmStudent.setTextTextOne(selectedRowData[0]);
                     frmStudent.setTextTextTwo(selectedRowData[1]);
                     frmStudent.setTextTextThree(selectedRowData[2]);
@@ -177,18 +203,19 @@ namespace Vargas_Tamayo_SQL_Project2
                     frmStudent.setTextTextFive(selectedRowData[4]);
                     frmStudent.setTextTextSix(selectedRowData[5]);
 
+                    //THIS FORM IS NOW NOT VISIBLE
                     this.Visible = false;
+
+                    //OPENS A FORM TO EDIT SELECTED ROW
                     frmStudent.ShowDialog();
+
+                    //THIS FORM IS NOW VISIBLE
                     this.Visible = true;
 
+                    //UPDATES THE DATAVIEWGRID
                     dgvViewData.DataSource = myDatabase.ImportData("Faculty_Table");
                     dgvViewData.Visible = true;
                 }
-
-
-
-
-
             }
             else if(dgvViewData.Visible != true)
             {
@@ -202,27 +229,29 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditDeleteRow()
+        /// Purpose: Deletes selected row from the database
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditDeleteRow_Click(object sender, EventArgs e)
         {
+            //CHECKS IF THERE IS A SELECTED ROW
             if (dgvViewData.CurrentCell != null)
             {
-
+                //GETS THE STRING REPRESENTATION IN THE FIRST CELL OF THE ROW SELECTED
                 String ID = dgvViewData.CurrentRow.Cells[0].Value.ToString();
 
+                //IF THE ID STARTS WITH 1, THEN DELETE THE ROW FROM THE STUDENT TABLE
                 if (ID.StartsWith("1"))
                 {
                     myDatabase.DeleteRow(ID,"Student_Table");
                     dgvViewData.DataSource = myDatabase.ImportData("Student_Table");
                     dgvViewData.Visible = true;
                 }
-
+                //IF THE ID STARTS WITH A 4, THEN DELETE THE ROW FROM THE FACULTY TABLE
                 else if (ID.StartsWith("4"))
                 {
                     myDatabase.DeleteRow(ID,"Faculty_Table");
@@ -240,12 +269,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuEditViewStudent()
+        /// Purpose: Allows the user to view the Student Table
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         private void mnuEditViewStudent_Click(object sender, EventArgs e)
         {        
@@ -255,12 +284,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mnuFileExit()
+        /// Purpose: Closes the form;
+        /// Parameter: none
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 2/19/2018
         /// </summary>
         private void mnuFileExit_Click(object sender, EventArgs e)
         {

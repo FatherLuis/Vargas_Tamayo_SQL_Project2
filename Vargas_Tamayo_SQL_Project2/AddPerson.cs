@@ -10,12 +10,27 @@ using System.Windows.Forms;
 
 namespace Vargas_Tamayo_SQL_Project2
 {
-   
 
+    /// <summary>
+    /// Class name: AddPerson
+    /// Class Author: Luis E. Vargas Tamayo
+    /// Purpose of the class: Allows user to insert and edit information from the database
+    /// Date: 02/19/2018
+    /// List of changes with dates: n/a
+    /// Special Notes: n/a
+    /// </summary>
     public partial class AddPerson : Form
     {
-        private mySQL SQL;
+        private mySQL SQL; //CLASS-VARIABLE OF CLASS MYSQL
 
+        /// <summary>
+        /// Method Name:AddPerson()
+        /// Purpose: Constructor
+        /// Parameter: String username, password
+        /// Method Input: initializeComponents()
+        /// Return Value: none
+        /// Date: 02/19/2018
+        /// </summary>
         public AddPerson(String username, String password)
         {
             InitializeComponent();
@@ -24,13 +39,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
 
-        //////////////////////////////////////////////
         /// <summary>
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Purpose: Sets the text for label
+        /// Parameter: String text
+        /// Method Input: none  
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         public void setTextLabelOne(string text)
         {
@@ -57,13 +71,13 @@ namespace Vargas_Tamayo_SQL_Project2
             lblSix.Text = text;
         }
 
-        ///////////////////////////////////////////////
+
         /// <summary>
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Purpose: Sets the text for textbox
+        /// Parameter: String text
+        /// Method Input: none  
+        /// Return Value: none
+        /// Date: 02/19/2018
         /// </summary>
         public void setTextTextOne(string text)
         {
@@ -91,12 +105,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
+        /// Method Name: btnSave()
+        /// Purpose: Saves inputted information from the user to the database
+        /// Parameter: none
+        /// Method Input: SQL.InsertDataFaculty,SQL.InserDataStudent, SQL.UpdateRow()
         /// Return Value:
-        /// Date: 
+        /// Date: 02/19/2018
         /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -106,33 +120,32 @@ namespace Vargas_Tamayo_SQL_Project2
 
             if (this.Text == "Add Faculty")
             {
-
+                //ADDS A NEW ROW IN THE FACULTY TABLE
                 SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
             }
             else if (this.Text == "Add Student")
             {
-
+                //ADDS A NEW ROW IN THE STUDENT TABLE
                 SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
             }
             else if (this.Text == "Edit Student")
             {
+                //UPDATES A ROW IN THE STUDENT TABLE
                 SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Student_Table");
 
             }
             else if(this.Text == "Edit Faculty")
             {
+                //UPDATES A ROW IN THE FACULTY TABLE
                 SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Faculty_Table");
             }
 
+            //CLOSES THE FORM
             Close();
-
-
-
-
         }
-        ///////////////////////////////////////////////
+
 
 
 

@@ -9,46 +9,52 @@ using System.Data;
 using System.Windows.Forms;
 
 namespace Vargas_Tamayo_SQL_Project2
-{
+{   
+    /// <summary>
+     /// Class name: mySQL
+     /// Class Author: Luis E. Vargas Tamayo
+     /// Purpose of the class: Creates the queries needed to add,edit, and remove information from the database
+     /// Date: 02/19/2018
+     /// List of changes with dates: n/a
+     /// Special Notes: n/a
+     /// </summary>
+   
     class mySQL
     {
 
-        private static string strDatabase;
-        private static string databaseName;
-        private static string strUsername;
-        private static string strPassword;
+        private static string strDatabase; //Class-Variable contains the name of the database server
+        private static string databaseName; //Class-Variables contains the name of the Database
+        private static string strUsername; //Class-Variable contains the username 
+        private static string strPassword; // Class-Variable containts the password
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: mySQL
+        /// Purpose: constructor
+        /// Parameter: String username,password
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         public mySQL(string Username, string Password)
         {
             strDatabase = "CTASV20R2DRW.tamuct.edu";
-            databaseName = "Initial Catalog = Luis2";
+            databaseName = "Initial Catalog = Luis2FirstAssignment";
             strUsername = "User ID = "+Username;
             strPassword = "Password =" + Password;
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: ImportData()
+        /// Purpose: Returns the entire table in the database
+        /// Parameter: String table
+        /// Method Input: none
+        /// Return Value: DataTable
+        /// Date: 02/19/2018
         /// </summary>
         public DataTable ImportData(string table)
         {
 
-
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
-
 
             SqlConnection con = new SqlConnection(strConnection);
 
@@ -56,8 +62,6 @@ namespace Vargas_Tamayo_SQL_Project2
 
             try
             {
-
-
                 con = new SqlConnection(strConnection);
 
                 con.Open();
@@ -71,24 +75,6 @@ namespace Vargas_Tamayo_SQL_Project2
                 dtRecord = new DataTable();
                 sqlDataAdap.Fill(dtRecord);
 
-                // “Open” the connection(this is the first time it actually
-                //contacts the database server)
-
-                //cnMyConn.Open();
-
-                //CREATE THE COMMAND OBJECT NOW
-                //SqlCommand sqlMyCommand = new SqlCommand(strCommand, cnMyConn);
-
-                //CREATE THE RESULT SET
-                //rsMyRS = sqlMyCommand.ExecuteReader();
-
-                //OUTPUT WHAT YOU GOT
-                //while (rsMyRS.Read())
-                //{
-                //    WRITE OUT THE FIRST ORDINAL NUMBERS HERE
-                //    COLUMNS.WE CAN ALSO REFER TO THE COLUMN BY NAME
-                //    Console.WriteLine(rsMyRS[*Name *]);
-                //}
             }
             finally
             {
@@ -103,19 +89,17 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: InsertDataStudent()
+        /// Purpose: Insert data to the Student Table
+        /// Parameter: String ID,FirstName,LastName,ElemSchool,MidSchool,HighSchool
+        /// Method Input: none
+        /// Return Value: none
+        /// Date: 02/18/2019
         /// </summary>
         public void InsertDataStudent(String ID, String FirstName, String LastName, String ElemSchool, String MidSchool, String HighSchool)
         {
 
-
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
-            //"Data Source =CTASV20R2DRW.tamuct.edu; Initial Catalog = Luis2; User ID =******; Password = ******";
 
             SqlConnection con = null;
             try
@@ -130,7 +114,6 @@ namespace Vargas_Tamayo_SQL_Project2
                                                  "VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
                                                  ID, FirstName, LastName, ElemSchool, MidSchool, HighSchool);
 
-
                 con.Open();
 
                 sqlCmd.ExecuteNonQuery();
@@ -142,29 +125,18 @@ namespace Vargas_Tamayo_SQL_Project2
             }
             finally
             {
-                
-
                 //CLOSE
                 con.Close();
-
-
             }
-
-
-
-
-
-
-
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: InsertDataFaculty
+        /// Purpose: Insert data to the Faculty Table
+        /// Parameter: String ID, FirstName,LastName, School, Department, HighestDegree
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         public void InsertDataFaculty(String ID, String FirstName, String LastName, String School, String Department, String HighestDegree)
         {
@@ -215,12 +187,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: GetRowData()
+        /// Purpose: Gets the information from a specific row in the table in the databse
+        /// Parameter: String ID, table
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         public String[] GetRowData(String ID,String table)
         {
@@ -322,12 +294,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: DeleteRow()
+        /// Purpose: Deletes the information from a specific row in the table in the database
+        /// Parameter: String ID, Table
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         public void DeleteRow(String ID,String table)
         {
@@ -369,12 +341,12 @@ namespace Vargas_Tamayo_SQL_Project2
         }
        
         /// <summary>
-        /// Method Name: 
-        /// Purpose: 
-        /// Parameter: 
-        /// Method Input: 
-        /// Return Value:
-        /// Date: 
+        /// Method Name: UpdateRow()
+        /// Purpose: Updates the information from a specific row in the table in the database
+        /// Parameter: String ID, txt2,txt3,txt4,txt5,txt6,Table
+        /// Method Input: none
+        /// Return Value:none
+        /// Date: 02/19/2018
         /// </summary>
         public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6,String table)
         {
