@@ -69,7 +69,18 @@ namespace Vargas_Tamayo_SQL_Project2
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = "Select* FROM Luis2FirstAssignment.db_owner." + table;
+
+
+                if (table == "Student_Table")
+                {
+                    sqlCmd.CommandText = "Luis2FirstAssignment.db_owner.Student_Select_Record; ; Select* FROM Luis2FirstAssignment.db_owner." + table;
+
+                }
+                else if (table == "Faculty_Table")
+                {
+                    sqlCmd.CommandText = "Luis2FirstAssignment.db_owner.Faculty_Select_Record; Select* FROM Luis2FirstAssignment.db_owner." + table;
+                }
+
                 SqlDataAdapter sqlDataAdap = new SqlDataAdapter(sqlCmd);
 
                 dtRecord = new DataTable();
@@ -89,14 +100,14 @@ namespace Vargas_Tamayo_SQL_Project2
         }
 
         /// <summary>
-        /// Method Name: InsertDataStudent()
+        /// Method Name: InsertData()
         /// Purpose: Insert data to the Student Table
         /// Parameter: String ID,FirstName,LastName,ElemSchool,MidSchool,HighSchool
         /// Method Input: none
         /// Return Value: none
         /// Date: 02/18/2019
         /// </summary>
-        public void InsertDataStudent(String ID, String FirstName, String LastName, String ElemSchool, String MidSchool, String HighSchool)
+        public void InsertData(String ID, String FirstName, String LastName, String Param1, String Param2, String Param3)
         {
 
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
@@ -109,10 +120,8 @@ namespace Vargas_Tamayo_SQL_Project2
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = String.Format("INSERT INTO [Luis2FirstAssignment].[db_owner].[Student_Table]" +
-                                                 "([ID],[First Name],[Last Name],[Elementary School],[Middle School],[High School])" +
-                                                 "VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
-                                                 ID, FirstName, LastName, ElemSchool, MidSchool, HighSchool);
+                sqlCmd.CommandText = String.Format("Luis2FirstAssignment.db_owner.Update_Table '{0}','{1}','{2}','{3}','{4}','{5}'",
+                                                    ID, FirstName, LastName, Param1, Param2, Param3);
 
                 con.Open();
 
@@ -130,60 +139,53 @@ namespace Vargas_Tamayo_SQL_Project2
             }
         }
 
-        /// <summary>
-        /// Method Name: InsertDataFaculty
-        /// Purpose: Insert data to the Faculty Table
-        /// Parameter: String ID, FirstName,LastName, School, Department, HighestDegree
-        /// Method Input: none
-        /// Return Value:none
-        /// Date: 02/19/2018
-        /// </summary>
-        public void InsertDataFaculty(String ID, String FirstName, String LastName, String School, String Department, String HighestDegree)
-        {
+        ///// <summary>
+        ///// Method Name: InsertDataFaculty
+        ///// Purpose: Insert data to the Faculty Table
+        ///// Parameter: String ID, FirstName,LastName, School, Department, HighestDegree
+        ///// Method Input: none
+        ///// Return Value:none
+        ///// Date: 02/19/2018
+        ///// </summary>
+        //public void InsertDataFaculty(String ID, String FirstName, String LastName, String School, String Department, String HighestDegree)
+        //{
 
 
-            String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
+        //    String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
 
-            SqlConnection con = null;
-            try
-            {
-                con = new SqlConnection(strConnection);
+        //    SqlConnection con = null;
+        //    try
+        //    {
+        //        con = new SqlConnection(strConnection);
 
-                SqlCommand sqlCmd = new SqlCommand();
-                sqlCmd.Connection = con;
-                sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = String.Format("INSERT INTO [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
-                                                 "([ID],[First Name],[Last Name],[School],[Department],[Highest Degree])" +
-                                                 "VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
-                                                 ID, FirstName, LastName, School, Department, HighestDegree);
-
-
-                con.Open();
-
-                sqlCmd.ExecuteNonQuery();
-
-            }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
-            //}
-            finally
-            {
+        //        SqlCommand sqlCmd = new SqlCommand();
+        //        sqlCmd.Connection = con;
+        //        sqlCmd.CommandType = CommandType.Text;
+        //        sqlCmd.CommandText = String.Format("INSERT INTO [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
+        //                                         "([ID],[First Name],[Last Name],[School],[Department],[Highest Degree])" +
+        //                                         "VALUES('{0}','{1}','{2}','{3}','{4}','{5}')",
+        //                                         ID, FirstName, LastName, School, Department, HighestDegree);
 
 
-                //CLOSE
-                con.Close();
+        //        con.Open();
+
+        //        sqlCmd.ExecuteNonQuery();
+
+        //    }
+        //    //catch (Exception ex)
+        //    //{
+        //    //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
+        //    //}
+        //    finally
+        //    {
 
 
-            }
+        //        //CLOSE
+        //        con.Close();
 
 
-
-
-
-
-
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Method Name: GetRowData()
@@ -195,6 +197,7 @@ namespace Vargas_Tamayo_SQL_Project2
         /// </summary>
         public String[] GetRowData(String ID,String table)
         {
+            //SOMETHING IS NOT WORKING HERE AND I NEED TO KNOW WHY
 
             String[] strList = new String[6];
 
@@ -206,11 +209,20 @@ namespace Vargas_Tamayo_SQL_Project2
             try
             {
                 con = new SqlConnection(strConnection);
+                SqlCommand cmd = null;
 
-                SqlCommand cmd = new SqlCommand(String.Format(
-                    "SELECT *" +
-                    "FROM[Luis2FirstAssignment].[db_owner].[{0}] " +
-                    "WHERE Luis2FirstAssignment.[db_owner].[{0}].ID = {1} ",table,ID), con);
+
+
+                if (table == "Student_Table")
+                {
+                    cmd = new SqlCommand(String.Format("Luis2FirstAssignment.db_owner.Student_Select_Record; SELECT * FROM Luis2FirstAssignment.db_owner.GetStudent({0})", ID), con);
+                }
+                else if (table == "Faculty_Table")
+                {
+                    cmd = new SqlCommand(String.Format("Luis2FirstAssignment.db_owner.Faculty_Select_Record; SELECT * FROM Luis2FirstAssignment.db_owner.GetFaculty({0})", ID), con);
+
+                }
+
 
                 con.Open();
 
@@ -290,9 +302,7 @@ namespace Vargas_Tamayo_SQL_Project2
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = String.Format("DELETE " +
-                                    "FROM [Luis2FirstAssignment].[db_owner].[{0}]" +
-                                    "WHERE [Luis2FirstAssignment].[db_owner].[{1}].[ID] = {2} ", table,table, ID);
+                sqlCmd.CommandText = String.Format("[db_owner].[Delete_Record] '{0}'", ID);
 
 
                 con.Open();
@@ -324,7 +334,7 @@ namespace Vargas_Tamayo_SQL_Project2
         /// Return Value:none
         /// Date: 02/19/2018
         /// </summary>
-        public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6,String table)
+        public void UpdateRow(String ID, String txt2, String txt3, String txt4, String txt5, String txt6)
         {
             String strConnection = String.Format("Data Source= {0}; {1}; {2}; {3};", strDatabase, databaseName, strUsername, strPassword);
 
@@ -336,23 +346,9 @@ namespace Vargas_Tamayo_SQL_Project2
                 sqlCmd.Connection = con;
                 sqlCmd.CommandType = CommandType.Text;
 
+                sqlCmd.CommandText = String.Format("db_owner.Update_Table '{0}','{1}','{2}','{3}','{4}','{5}'",
+                                                   ID, txt2, txt3, txt4, txt5, txt6);
 
-                if (table == "Student_Table")
-                {
-
-
-                    sqlCmd.CommandText = String.Format("UPDATE [Luis2FirstAssignment].[db_owner].[Student_Table]" +
-                                                     "SET [First Name] = '{1}',[Last Name]='{2}',[Elementary School]='{3}',[Middle School]='{4}',[High School]='{5}'" +
-                                                     "WHERE ID = '{0}'",
-                                                     ID, txt2, txt3, txt4, txt5, txt6);
-                }
-                else if (table == "Faculty_Table")
-                {
-                    sqlCmd.CommandText = String.Format("UPDATE [Luis2FirstAssignment].[db_owner].[Faculty_Table]" +
-                                                     "SET [First Name]='{1}',[Last Name]='{2}',[School]='{3}',[Department]='{4}',[Highest Degree]='{5}'" +
-                                                     "WHERE ID ='{0}'",
-                                                     ID, txt2, txt3, txt4, txt5, txt6);
-                }
 
 
                 con.Open();
@@ -360,10 +356,10 @@ namespace Vargas_Tamayo_SQL_Project2
                 sqlCmd.ExecuteNonQuery();
 
             }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("CONNECTION BAD, TRY AGAIN LATER");
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("CONNECTION BAD, Contact your DBA for assistance");
+            }
             finally
             {
 

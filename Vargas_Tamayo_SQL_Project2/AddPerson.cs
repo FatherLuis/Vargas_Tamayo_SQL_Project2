@@ -120,30 +120,20 @@ namespace Vargas_Tamayo_SQL_Project2
 
             if (isfilled())
             {
+                //ADDS A NEW ROW IN THE TABLE
+                SQL.InsertData(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
-                if (this.Text == "Add Faculty")
-                {
-                    //ADDS A NEW ROW IN THE FACULTY TABLE
-                    SQL.InsertDataFaculty(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+                //if (this.Text == "Edit Student")
+                //{
+                //    //UPDATES A ROW IN THE STUDENT TABLE
+                //    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
 
-                }
-                else if (this.Text == "Add Student")
-                {
-                    //ADDS A NEW ROW IN THE STUDENT TABLE
-                    SQL.InsertDataStudent(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
-
-                }
-                else if (this.Text == "Edit Student")
-                {
-                    //UPDATES A ROW IN THE STUDENT TABLE
-                    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Student_Table");
-
-                }
-                else if (this.Text == "Edit Faculty")
-                {
-                    //UPDATES A ROW IN THE FACULTY TABLE
-                    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text, "Faculty_Table");
-                }
+                //}
+                //else if (this.Text == "Edit Faculty")
+                //{
+                //    //UPDATES A ROW IN THE FACULTY TABLE
+                //    SQL.UpdateRow(txtOne.Text, txtTwo.Text, txtThree.Text, txtFour.Text, txtFive.Text, txtSix.Text);
+                //}
 
                 //CLOSES THE FORM
                 Close();
